@@ -6,7 +6,7 @@ compatibility_date = "2026-06-01"
 binding = "DB"
 database_name = "mess-db"
 # Placeholder. Local mode works with it. Replace with the real id only at deploy time.
-database_id = "PASTE_YOUR_REAL_DATABASE_ID_HERE"
+database_id = "ad61089d-8bca-4389-8249-f45bf8eadf07"
 
 # Live updates: the Durable Object class "Hub" lives in the separate Worker "mess-hub" (see /hub).
 # Pages requires script_name for Durable Object bindings.
