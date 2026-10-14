@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT NOT NULL,
   password_salt TEXT NOT NULL,
   password_iterations INTEGER NOT NULL DEFAULT 20000,
+  member_id TEXT REFERENCES members(id) ON DELETE SET NULL, -- the member this login belongs to (NULL for non-member logins)
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -103,6 +104,7 @@ CREATE TABLE IF NOT EXISTS month_status (
 );
 
 -- Indexes (month queries filter by date/month; foreign keys speed up joins and cascades).
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_member_id ON users(member_id); -- one member = one login
 CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions(expires_at);
 CREATE INDEX IF NOT EXISTS idx_bazar_entries_date ON bazar_entries(date);

@@ -1,0 +1,8 @@
+name = "mess-hub"
+main = "src/index.ts"
+compatibility_date = "2026-06-01"
+
+# Declares the Hub class as a SQLite-backed Durable Object (the only kind the free plan allows).
+[exports.Hub]
+type = "durable-object"
+storage = "sqlite"

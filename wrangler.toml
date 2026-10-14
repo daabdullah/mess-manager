@@ -7,3 +7,10 @@ binding = "DB"
 database_name = "mess-db"
 # Placeholder. Local mode works with it. Replace with the real id only at deploy time.
 database_id = "PASTE_YOUR_REAL_DATABASE_ID_HERE"
+
+# Live updates: the Durable Object class "Hub" lives in the separate Worker "mess-hub" (see /hub).
+# Pages requires script_name for Durable Object bindings.
+[[durable_objects.bindings]]
+name = "HUB"
+class_name = "Hub"
+script_name = "mess-hub"

@@ -4,6 +4,336 @@
 @import "@fontsource/hind-siliguri/500.css";
 @import "@fontsource/hind-siliguri/600.css";
 
-@theme {
-  --font-sans: "Inter Variable", "Hind Siliguri", system-ui, sans-serif;
+/* Dark mode follows the device setting */
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme inline {
+  --font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Hind Siliguri", system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--fill);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--fill);
+  --color-muted-foreground: var(--label-2);
+  --color-tertiary: var(--label-3);
+  --color-accent: var(--fill);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--danger);
+  --color-border: var(--separator);
+  --color-input: var(--fill);
+  --color-ring: var(--primary);
+  --color-fill: var(--fill);
+  --color-fill-2: var(--fill-2);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 1.75rem;
+
+  --shadow-card: var(--card-shadow);
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: linear(0, 0.0036, 0.0141 2.2%, 0.0551 4.5%, 0.2 9.6%, 0.4 14.3%, 0.6 19.2%, 0.8 25.6%, 0.929 32.6%, 1.002 38.6%, 1.034 44.1%, 1.04 48%, 1.027 55%, 1.009 61.4%, 1.001 70%, 1);
+}
+
+:root {
+  color-scheme: light dark;
+  --background: #f2f2f7;
+  --card: #ffffff;
+  --card-2: color-mix(in srgb, var(--foreground) 5%, transparent);
+  --foreground: #111113;
+  --label-2: rgba(60, 60, 67, 0.64);
+  --label-3: rgba(60, 60, 67, 0.4);
+  --fill: rgba(118, 118, 128, 0.12);
+  --fill-2: rgba(118, 118, 128, 0.2);
+  --separator: rgba(60, 60, 67, 0.12);
+  --hairline: rgba(0, 0, 0, 0.05);
+  --primary: #007aff;
+  --primary-foreground: #ffffff;
+  --success: #248a3d;
+  --warning: #b25000;
+  --danger: #d70015;
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px -16px rgba(0, 0, 0, 0.14);
+  /* Liquid Glass transparency: --tint is 0 (ultra clear) to 1 (fully tinted). It is set from Users > Liquid Glass. */
+  --t: var(--tint, 0.25);
+  --glass-base: #ffffff;
+  --glass-bg: color-mix(in srgb, var(--glass-base) calc(22% + var(--t) * 66%), transparent);
+  --glass-strong-bg: color-mix(in srgb, var(--glass-base) calc(34% + var(--t) * 58%), transparent);
+  --card-glass: color-mix(in srgb, var(--glass-base) calc(12% + var(--t) * 76%), transparent);
+  --pill-bg: color-mix(in srgb, var(--glass-base) calc(14% + var(--t) * 66%), transparent);
+  --field-bg: color-mix(in srgb, var(--field-base, var(--glass-base)) calc(16% + var(--t) * 64%), transparent);
+  --cell-bg: color-mix(in srgb, var(--glass-base) calc(36% + var(--t) * 54%), transparent);
+  --bar-bg: color-mix(in srgb, var(--background) calc(32% + var(--t) * 50%), transparent);
+  --blur: calc(18px + var(--t) * 18px);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-shadow: 0 10px 40px rgba(31, 38, 135, 0.12);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 1px 0 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+  --field-rim: rgba(60, 60, 67, 0.1);
+  --sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.1) 38%, rgba(255, 255, 255, 0) 62%);
+  --glow: rgba(255, 255, 255, 0.7);
+  --backdrop:
+    radial-gradient(38% 34% at 14% 8%, rgba(0, 122, 255, 0.3), transparent 70%),
+    radial-gradient(34% 34% at 88% 12%, rgba(175, 82, 222, 0.26), transparent 70%),
+    radial-gradient(38% 38% at 80% 88%, rgba(255, 45, 85, 0.16), transparent 70%),
+    radial-gradient(34% 34% at 16% 86%, rgba(52, 199, 89, 0.2), transparent 70%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --card: #1c1c1e;
+    --foreground: #f5f5f7;
+    --label-2: rgba(235, 235, 245, 0.62);
+    --label-3: rgba(235, 235, 245, 0.34);
+    --fill: rgba(120, 120, 128, 0.24);
+    --fill-2: rgba(120, 120, 128, 0.36);
+    --separator: rgba(255, 255, 255, 0.1);
+    --hairline: rgba(255, 255, 255, 0.08);
+    --primary: #0a84ff;
+    --success: #30d158;
+    --warning: #ff9f0a;
+    --danger: #ff453a;
+    --card-shadow: 0 0 0 transparent;
+    --glass-base: #2c2c2e;
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    --field-base: #000;
+    --field-rim: rgba(255, 255, 255, 0.12);
+    --sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0) 62%);
+    --glow: rgba(255, 255, 255, 0.16);
+    --backdrop:
+      radial-gradient(38% 34% at 14% 8%, rgba(10, 132, 255, 0.38), transparent 70%),
+      radial-gradient(34% 34% at 88% 12%, rgba(191, 90, 242, 0.3), transparent 70%),
+      radial-gradient(38% 38% at 80% 88%, rgba(255, 55, 95, 0.2), transparent 70%),
+      radial-gradient(34% 34% at 16% 86%, rgba(48, 209, 88, 0.22), transparent 70%);
+  }
+}
+
+/* The device asks for less transparency or more contrast: glass stays fully tinted (like iOS Reduce Transparency) */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :root { --t: 1; }
+}
+
+/* ---------- Type scale: the only text sizes used in the app ---------- */
+@utility type-large { font-size: 1.875rem; line-height: 2.25rem; letter-spacing: -0.022em; }
+@utility type-title { font-size: 1.375rem; line-height: 1.75rem; letter-spacing: -0.018em; }
+@utility type-headline { font-size: 1.0625rem; line-height: 1.375rem; letter-spacing: -0.014em; }
+@utility type-body { font-size: 0.9375rem; line-height: 1.375rem; letter-spacing: -0.01em; }
+@utility type-sub { font-size: 0.8125rem; line-height: 1.125rem; letter-spacing: -0.006em; }
+@utility type-foot { font-size: 0.75rem; line-height: 1rem; }
+@utility type-cap { font-size: 0.6875rem; line-height: 0.875rem; }
+
+/* ---------- Surfaces ---------- */
+@utility surface {
+  position: relative;
+  background-color: var(--card-glass);
+  background-image: var(--sheen);
+  -webkit-backdrop-filter: blur(calc(var(--blur) * 1.2)) saturate(180%);
+  backdrop-filter: blur(calc(var(--blur) * 1.2)) saturate(180%);
+  box-shadow: 0 0 0 1px var(--glass-border), var(--glass-highlight), var(--card-shadow);
+  /* a light that follows the finger or pointer (see lib/glow.ts) */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 0%), var(--glow), transparent 65%);
+    opacity: 0;
+    transition: opacity 500ms var(--ease-ios);
+  }
+  &:hover::before { opacity: 1; }
+}
+@utility glass {
+  background-color: var(--glass-bg);
+  background-image: var(--sheen);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(190%);
+  backdrop-filter: blur(var(--blur)) saturate(190%);
+  box-shadow: 0 0 0 1px var(--glass-border), var(--glass-highlight), var(--glass-shadow);
+}
+@utility glass-strong {
+  background-color: var(--glass-strong-bg);
+  background-image: var(--sheen);
+  -webkit-backdrop-filter: blur(calc(var(--blur) * 1.6)) saturate(190%);
+  backdrop-filter: blur(calc(var(--blur) * 1.6)) saturate(190%);
+  box-shadow: 0 0 0 1px var(--glass-border), var(--glass-highlight), var(--glass-shadow);
+}
+@utility glass-pill {
+  background-color: var(--pill-bg);
+  background-image: var(--sheen);
+  -webkit-backdrop-filter: blur(calc(var(--blur) * 0.8)) saturate(180%);
+  backdrop-filter: blur(calc(var(--blur) * 0.8)) saturate(180%);
+  box-shadow: 0 0 0 1px var(--glass-border), var(--glass-highlight), 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+@utility glass-field {
+  background-color: var(--field-bg);
+  -webkit-backdrop-filter: blur(calc(var(--blur) * 0.6));
+  backdrop-filter: blur(calc(var(--blur) * 0.6));
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 0 1px var(--field-rim), 0 1px 0 var(--glass-border);
+}
+@utility glass-bar {
+  background-color: var(--bar-bg);
+  background-image: var(--sheen);
+  -webkit-backdrop-filter: blur(calc(var(--blur) * 1.2)) saturate(190%);
+  backdrop-filter: blur(calc(var(--blur) * 1.2)) saturate(190%);
+  box-shadow: 0 1px 0 var(--glass-border), 0 8px 24px -12px rgba(0, 0, 0, 0.15);
+}
+/* Browsers that can bend what is behind the glass (Chrome and Edge) get a subtle liquid warp */
+@supports (backdrop-filter: url(#liquid-lens)) and (not (-webkit-appearance: -apple-pay-button)) {
+  .glass {
+    -webkit-backdrop-filter: url(#liquid-lens) blur(var(--blur)) saturate(190%);
+    backdrop-filter: url(#liquid-lens) blur(var(--blur)) saturate(190%);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .surface, .glass, .glass-strong, .glass-pill, .glass-field, .glass-bar { background-color: var(--card); }
+}
+
+/* Springy press feedback for anything tappable */
+@utility press {
+  transition-property: transform, background-color, color, box-shadow, opacity, filter;
+  transition-duration: 220ms;
+  transition-timing-function: var(--ease-ios);
+  &:active { transform: scale(0.96); }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  * { border-color: var(--separator); scrollbar-width: thin; scrollbar-color: var(--label-3) transparent; }
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+    background-color: var(--background);
+    background-image: var(--backdrop);
+    background-attachment: fixed;
+    background-size: 160% 160%;
+    animation: drift 38s ease-in-out infinite alternate;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  *:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 60%, transparent); outline-offset: 2px; }
+  button, [role="button"], select, summary { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  /* Same icon weight everywhere */
+  svg.lucide { stroke-width: 1.8; }
+  ::selection { background: color-mix(in srgb, var(--primary) 30%, transparent); }
+}
+
+/* iOS zooms the page when an input is smaller than 16px */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* ---------- Motion ---------- */
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes sheet-up { from { transform: translateY(105%); } to { transform: translateY(0); } }
+@keyframes sheet-down { to { transform: translateY(105%); } }
+@keyframes pop-in { from { opacity: 0; transform: translate(-50%, -47%) scale(0.92); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes pop-out { to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); } }
+@keyframes drawer-in { from { transform: translateX(-108%); } to { transform: translateX(0); } }
+@keyframes drawer-out { to { transform: translateX(-108%); } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes drift { from { background-position: 0% 0%; } to { background-position: 100% 70%; } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+.rise { animation: rise 520ms var(--ease-ios) backwards; }
+
+/* Page change: every card on the page rises in, one after another */
+.page-enter > * > * { animation: rise 520ms var(--ease-ios) backwards; }
+.page-enter > * > *:nth-child(2) { animation-delay: 50ms; }
+.page-enter > * > *:nth-child(3) { animation-delay: 100ms; }
+.page-enter > * > *:nth-child(4) { animation-delay: 150ms; }
+.page-enter > * > *:nth-child(5) { animation-delay: 200ms; }
+.page-enter > * > *:nth-child(n + 6) { animation-delay: 250ms; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--fill) 25%, var(--fill-2) 50%, var(--fill) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.dialog-overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.dialog-overlay[data-state="open"] { animation: fade-in 300ms var(--ease-ios) both; }
+.dialog-overlay[data-state="closed"] { animation: fade-out 220ms var(--ease-ios) both; }
+
+/* Phone: floating sheet from the bottom. 640px and up: centered pop */
+.dialog-panel {
+  position: fixed; z-index: 50; left: 0.5rem; right: 0.5rem;
+  bottom: max(0.5rem, env(safe-area-inset-bottom));
+  max-height: 90dvh; overflow-y: auto; border-radius: 1.75rem; outline: none;
+}
+.dialog-panel[data-state="open"] { animation: sheet-up 520ms var(--ease-ios) both; }
+.dialog-panel[data-state="closed"] { animation: sheet-down 280ms var(--ease-ios) both; }
+@media (min-width: 640px) {
+  .dialog-panel {
+    left: 50%; right: auto; top: 50%; bottom: auto;
+    width: calc(100% - 2rem); max-width: var(--dialog-w, 28rem);
+    transform: translate(-50%, -50%);
+  }
+  .dialog-panel[data-state="open"] { animation: pop-in 420ms var(--ease-spring) both; }
+  .dialog-panel[data-state="closed"] { animation: pop-out 200ms var(--ease-ios) both; }
+}
+
+.drawer-panel {
+  position: fixed; z-index: 50; left: 0.5rem; top: max(0.5rem, env(safe-area-inset-top));
+  bottom: max(0.5rem, env(safe-area-inset-bottom));
+  width: min(20rem, calc(100vw - 1rem)); border-radius: 2rem; outline: none;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.drawer-panel[data-state="open"] { animation: drawer-in 520ms var(--ease-ios) both; }
+.drawer-panel[data-state="closed"] { animation: drawer-out 300ms var(--ease-ios) both; }
+
+.glass-toast {
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  box-shadow: 0 0 0 1px var(--glass-border), var(--glass-shadow) !important;
+}
+
+/* The Liquid Glass slider (Users > Liquid Glass) */
+.glass-range { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; cursor: pointer; --p: 50%; }
+.glass-range::-webkit-slider-runnable-track {
+  height: 8px; border-radius: 999px;
+  background: linear-gradient(to right, var(--primary) var(--p), var(--fill-2) var(--p));
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.glass-range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 28px; height: 28px; margin-top: -10px; border-radius: 50%;
+  background: linear-gradient(180deg, #fff, #f0f0f4);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 #fff;
+  transition: transform 300ms var(--ease-spring);
+}
+.glass-range:active::-webkit-slider-thumb { transform: scale(1.14); }
+.glass-range::-moz-range-track { height: 8px; border-radius: 999px; background: var(--fill-2); }
+.glass-range::-moz-range-progress { height: 8px; border-radius: 999px; background: var(--primary); }
+.glass-range::-moz-range-thumb { width: 28px; height: 28px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
