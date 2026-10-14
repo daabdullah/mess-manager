@@ -4,13 +4,18 @@ import AppLayout from '@/components/AppLayout'
 import ConfirmProvider from '@/components/ConfirmProvider'
 import LiveProvider from '@/components/LiveProvider'
 import MonthProvider from '@/components/MonthProvider'
+import { ApiError } from '@/lib/api'
 import { useMe } from '@/lib/auth'
 
 // Auth guard: shows the app only when /api/me says we are signed in.
 export default function AuthLayout() {
   const me = useMe()
 
-  if (me.isPending) {
+  // Not signed in (401): api.ts is already sending us to /login, so keep showing the spinner
+  // instead of flashing an error with a Try again button.
+  const notSignedIn = me.isError && me.error instanceof ApiError && me.error.status === 401
+
+  if (me.isPending || notSignedIn) {
     return (
       <div role="status" aria-label="Loading" className="flex min-h-dvh items-center justify-center">
         <span className="size-8 animate-spin rounded-full border-[3px] border-fill-2 border-t-primary" />

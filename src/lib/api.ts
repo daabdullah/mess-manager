@@ -1,5 +1,14 @@
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
+// An error that also remembers the HTTP status (401 = not signed in).
+export class ApiError extends Error {
+  status: number
+  constructor(message: string, status: number) {
+    super(message)
+    this.status = status
+  }
+}
+
 async function request<T>(method: Method, path: string, body?: unknown): Promise<T> {
   let res: Response
   try {
@@ -26,12 +35,12 @@ async function request<T>(method: Method, path: string, body?: unknown): Promise
   // Session expired: go to the login page (but not for the login/setup calls themselves)
   if (res.status === 401 && !path.startsWith('/api/login') && !path.startsWith('/api/setup')) {
     if (window.location.pathname !== '/login') window.location.assign('/login')
-    throw new Error('Please log in again.')
+    throw new ApiError('Please log in again.', 401)
   }
 
   if (!res.ok) {
     const message = (data as { error?: string } | null)?.error
-    throw new Error(message || `Request failed (${res.status})`)
+    throw new ApiError(message || `Request failed (${res.status})`, res.status)
   }
   return data as T
 }
