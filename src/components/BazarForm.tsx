@@ -5,7 +5,7 @@ import { Plus, Save, Trash2, Users } from 'lucide-react'
 import { Link } from 'react-router'
 import { EmptyState, ErrorState } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Field } from '@/components/ui/field'
 import { Notice } from '@/components/ui/notice'
@@ -264,7 +264,6 @@ export default function BazarForm({ entry, onDone }: BazarFormProps) {
     <Card>
       <CardHeader>
         <CardTitle>Add bazar</CardTitle>
-        <CardDescription>One entry for each shopping trip. You can add several for the same person on the same day.</CardDescription>
       </CardHeader>
       <CardContent>
         {members.isError && !members.data && <ErrorState error={members.error} onRetry={() => void members.refetch()} />}

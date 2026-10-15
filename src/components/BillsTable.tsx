@@ -4,7 +4,7 @@ import { format, parseISO } from 'date-fns'
 import { Pin, Receipt, Users } from 'lucide-react'
 import { EmptyState, ErrorState, Loading } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Notice } from '@/components/ui/notice'
@@ -101,9 +101,6 @@ export default function BillsTable() {
     <Card>
       <CardHeader>
         <CardTitle>Who pays what in {monthName}</CardTitle>
-        <CardDescription>
-          Each bill is split equally. To give someone a fixed amount instead, tap their cell. The rest is split among the other members.
-        </CardDescription>
       </CardHeader>
       <CardContent flush>
         {(bills.isPending || members.isPending) && <Loading className="px-(--pad)" />}
@@ -266,7 +263,7 @@ function FixedEditor({ billId, billName, memberId, memberName, month, fixed, sha
       </DialogTitle>
       <DialogDescription>
         {format(parseISO(month), 'MMMM yyyy')}. Now pays {formatTaka(share)}
-        {fixed === undefined ? ' (equal share)' : ' (fixed)'}. A fixed amount counts for this month only.
+        {fixed === undefined ? ' (equal share)' : ' (fixed)'}. It stays the same in later months until someone changes it.
       </DialogDescription>
 
       <form onSubmit={onSubmit} className="mt-5 space-y-3" noValidate>

@@ -4,7 +4,7 @@ import AccessoriesTotals, { MyBalanceCards } from '@/components/AccessoriesTotal
 
 export default function Accessories() {
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <MyBalanceCards kind="accessories" />
       <AccessoriesTotals />
       <AccessoriesForm />

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { format, parseISO } from 'date-fns'
 import { ShoppingBasket } from 'lucide-react'
 import BazarDayDialog from '@/components/BazarDayDialog'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { tbl } from '@/components/ui/table'
 import { useBazar } from '@/lib/bazar'
 import { formatTaka } from '@/lib/format'
@@ -47,11 +47,6 @@ export default function BazarTable() {
     <Card>
       <CardHeader>
         <CardTitle>Bazar in {monthName}</CardTitle>
-        <CardDescription>
-          {ready && entries.length > 0
-            ? `${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}, ${formatTaka(grand)} in total. Tap a day to see, edit or delete its entries.`
-            : 'Each cell is what a member spent on that day.'}
-        </CardDescription>
       </CardHeader>
       <CardContent flush>
         {(bazar.isPending || members.isPending) && <Loading className="px-(--pad)" />}

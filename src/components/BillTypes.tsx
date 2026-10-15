@@ -5,7 +5,7 @@ import { Plus, Receipt, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { EmptyState, ErrorState, Loading } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { IconTile } from '@/components/ui/icon-tile'
 import { Input } from '@/components/ui/input'
 import { Notice } from '@/components/ui/notice'
@@ -47,10 +47,6 @@ export default function BillTypes() {
     <Card>
       <CardHeader>
         <CardTitle>Monthly bills</CardTitle>
-        <CardDescription>
-          Add the bills of the house, like rent, electricity, water, gas or internet. Set each amount for {format(parseISO(month), 'MMMM yyyy')}; it
-          also applies to later months until you save a new amount.
-        </CardDescription>
       </CardHeader>
       <CardContent flush className="space-y-2">
         <form onSubmit={onAdd} className="flex gap-2 px-(--pad) pb-2">

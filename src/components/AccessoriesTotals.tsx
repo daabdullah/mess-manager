@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { format, parseISO } from 'date-fns'
 import { Package, Users, Wallet } from 'lucide-react'
 import { useAccessories } from '@/lib/accessories'
 import { getOrGive } from '@/lib/calc'
@@ -30,7 +29,6 @@ export default function AccessoriesTotals() {
 
   return (
     <section className="space-y-3">
-      <p className="type-sub text-muted-foreground">Accessories in {format(parseISO(month), 'MMMM yyyy')} are shared equally by all members.</p>
       {accessories.isError && !accessories.data && <ErrorState error={accessories.error} onRetry={() => void accessories.refetch()} />}
       {members.isError && !members.data && <ErrorState error={members.error} onRetry={() => void members.refetch()} />}
       {!ready && !accessories.isError && !members.isError && <Loading />}
@@ -106,9 +104,6 @@ export function MyBalanceCards({ kind }: { kind: 'bazar' | 'accessories' }) {
         <Stat label="Will give" value={me ? formatTaka(give) : '–'} valueClass={give > 0 ? 'text-danger' : ''} />
         <Stat label="Will get" value={me ? formatTaka(get) : '–'} valueClass={get > 0 ? 'text-success' : ''} />
       </div>
-      <p className="type-foot text-muted-foreground">
-        {kind === 'bazar' ? 'Will give / get here = bazar paid minus meal cost.' : 'Will give / get here = accessories paid minus your equal share.'}
-      </p>
     </section>
   )
 }

@@ -7,7 +7,7 @@ import { Avatar } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import DeleteMemberDialog from '@/components/DeleteMemberDialog'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { api } from '@/lib/api'
@@ -53,14 +53,12 @@ export default function Members() {
   }
 
   const list = members.data ?? []
-  const activeCount = list.filter((m) => m.active).length
 
   return (
     <div className="space-y-5">
       <Card>
         <CardHeader>
           <CardTitle>Add a member</CardTitle>
-          <CardDescription>Every member gets a login. They sign in with this email and password.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={onAdd} className="grid gap-2 sm:grid-cols-2">
@@ -77,10 +75,6 @@ export default function Members() {
       <Card>
         <CardHeader>
           <CardTitle>Members</CardTitle>
-          <CardDescription>
-            {members.data ? `${activeCount} active, ${list.length - activeCount} inactive. ` : ''}
-            Inactive members keep their history but you can leave them out of new entries.
-          </CardDescription>
         </CardHeader>
         <CardContent flush>
           {members.isPending && <Loading className="px-(--pad)" />}

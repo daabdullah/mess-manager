@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import AccessoriesForm from '@/components/AccessoriesForm'
 import { EmptyState, ErrorState, Loading } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { IconTile } from '@/components/ui/icon-tile'
 import { api } from '@/lib/api'
 import { useAccessories, type Accessory } from '@/lib/accessories'
@@ -49,9 +49,6 @@ export default function AccessoriesList() {
     <Card>
       <CardHeader>
         <CardTitle>Accessories in {format(parseISO(month), 'MMMM yyyy')}</CardTitle>
-        <CardDescription>
-          {accessories.data ? `${list.length} ${list.length === 1 ? 'item' : 'items'}.` : 'Everything bought for the house this month.'}
-        </CardDescription>
       </CardHeader>
       <CardContent flush>
         {accessories.isPending && <Loading className="px-(--pad)" />}

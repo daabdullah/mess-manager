@@ -98,7 +98,6 @@ export default function AppLayout() {
           {current && (
             <div className="rise mt-1 mb-5">
               <h1 className="type-large font-bold">{current.label}</h1>
-              <p className="type-body mt-0.5 text-muted-foreground">{current.subtitle}</p>
             </div>
           )}
           {MONTH_PAGES.some((p) => pathname === p || pathname.startsWith(p + '/')) && <MonthBanner />}

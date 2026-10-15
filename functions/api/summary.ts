@@ -1,4 +1,5 @@
 import type { AuthData, Env } from '../_types'
+import { EFFECTIVE_FIXED_SQL } from '../_bills'
 import { isMonth, nextMonth } from '../_month'
 import { error, json } from '../_utils'
 
@@ -42,7 +43,7 @@ interface FixedRow {
 //   accessories  - SUM of the month's accessories per payer
 //   bills        - all bill types
 //   amounts      - each bill's amount history (effective_month at or before the month)
-//   fixed        - the fixed shares of that month
+//   fixed        - the fixed shares that apply to that month (carried forward from earlier months)
 // The sums are done in SQL (rounded to 2 decimals to drop float noise), so the response
 // has one row per member, not one row per entry. Date queries use the date indexes.
 export const onRequestGet: PagesFunction<Env, string, AuthData> = async ({ request, env }) => {
@@ -67,7 +68,7 @@ export const onRequestGet: PagesFunction<Env, string, AuthData> = async ({ reque
       .bind(month, end),
     env.DB.prepare('SELECT id, name FROM bills ORDER BY created_at, rowid'),
     env.DB.prepare('SELECT bill_id, effective_month, amount FROM bill_amounts WHERE effective_month <= ?').bind(month),
-    env.DB.prepare('SELECT bill_id, member_id, fixed_amount FROM bill_fixed_shares WHERE month = ?').bind(month),
+    env.DB.prepare(EFFECTIVE_FIXED_SQL).bind(month),
   ])
 
   return json({

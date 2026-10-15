@@ -7,7 +7,7 @@ import { ErrorState, Loading } from '@/components/States'
 import { Avatar } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Field } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Notice } from '@/components/ui/notice'
@@ -73,7 +73,6 @@ export default function Users() {
       <Card>
         <CardHeader>
           <CardTitle>People who can sign in</CardTitle>
-          <CardDescription>Everyone here can do everything in the app. To add or remove a person, use the Members page.</CardDescription>
         </CardHeader>
         <CardContent flush>
           {users.isPending && <Loading className="px-(--pad)" />}

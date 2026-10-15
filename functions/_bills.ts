@@ -4,6 +4,14 @@ import { isMonth } from './_month'
 
 const MAX_TAKA = 10_000_000
 
+// Fixed shares carry forward: for each bill and member, the latest row at or before the month
+// applies, until a later month sets a new one. A row with fixed_amount = -1 means "back to the
+// equal split from this month on" (needed to end a carried-over share). Bind the month once.
+export const FIXED_CLEARED = -1
+export const EFFECTIVE_FIXED_SQL = `SELECT f.bill_id, f.member_id, f.fixed_amount FROM bill_fixed_shares f
+  WHERE f.fixed_amount >= 0
+    AND f.month = (SELECT MAX(x.month) FROM bill_fixed_shares x WHERE x.bill_id = f.bill_id AND x.member_id = f.member_id AND x.month <= ?)`
+
 export interface BillRow {
   id: string
   name: string

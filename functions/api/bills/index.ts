@@ -1,5 +1,5 @@
 import type { AuthData, Env } from '../../_types'
-import { cleanBillName, type BillRow } from '../../_bills'
+import { EFFECTIVE_FIXED_SQL, cleanBillName, type BillRow } from '../../_bills'
 import { isMonth } from '../../_month'
 import { notify } from '../../_notify'
 import { error, json, newId, readJson } from '../../_utils'
@@ -19,7 +19,7 @@ interface FixedRow {
 // Everything for the screen in ONE batch of three queries:
 //   bills        - all bill types
 //   amounts      - every amount row with effective_month at or before the month (the history)
-//   fixed        - the fixed shares of that month
+//   fixed        - the fixed shares that apply to that month (carried forward from earlier months)
 export const onRequestGet: PagesFunction<Env, string, AuthData> = async ({ request, env }) => {
   const month = new URL(request.url).searchParams.get('month')
   if (!isMonth(month)) return error('Month must look like 2026-10-01.')
@@ -29,9 +29,7 @@ export const onRequestGet: PagesFunction<Env, string, AuthData> = async ({ reque
     env.DB
       .prepare('SELECT bill_id, effective_month, amount FROM bill_amounts WHERE effective_month <= ?')
       .bind(month),
-    env.DB
-      .prepare('SELECT bill_id, member_id, fixed_amount FROM bill_fixed_shares WHERE month = ?')
-      .bind(month),
+    env.DB.prepare(EFFECTIVE_FIXED_SQL).bind(month),
   ])
 
   return json({

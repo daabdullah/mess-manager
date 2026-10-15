@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 import LiveDot from '@/components/LiveDot'
 import MonthPicker from '@/components/MonthPicker'
+import ThemeToggle from '@/components/ThemeToggle'
 import { findNav } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 
@@ -32,6 +33,7 @@ export default function TopBar() {
         </p>
         <MonthPicker />
         <LiveDot />
+        <ThemeToggle />
       </div>
     </header>
   )

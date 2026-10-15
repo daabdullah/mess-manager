@@ -4,7 +4,7 @@ import { eachDayOfInterval, endOfMonth, format, parseISO } from 'date-fns'
 import { Users } from 'lucide-react'
 import { EmptyState, ErrorState, Loading } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Notice } from '@/components/ui/notice'
@@ -79,11 +79,6 @@ export default function MealsTable() {
     <Card>
       <CardHeader>
         <CardTitle>Meals in {monthName}</CardTitle>
-        <CardDescription>
-          {ready && rows.length > 0
-            ? `${fromHundredths(grand)} meals in total. Tap a cell to change or clear it.`
-            : 'Tap a cell to set the meals of a member on a day.'}
-        </CardDescription>
       </CardHeader>
       <CardContent flush>
         {(meals.isPending || members.isPending) && <Loading className="px-(--pad)" />}

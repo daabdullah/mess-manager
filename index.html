@@ -9,6 +9,16 @@
     <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <title>Mess Manager</title>
+    <script>
+      // Set theme and performance mode before the first paint, so nothing flashes.
+      try {
+        var r = document.documentElement, s = localStorage, m = window.matchMedia, n = navigator;
+        var t = s.getItem('mm-theme'), p = s.getItem('mm-perf');
+        r.dataset.theme = t === 'light' || t === 'dark' ? t : m('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        var low = (n.deviceMemory && n.deviceMemory <= 4) || (n.hardwareConcurrency && n.hardwareConcurrency <= 4) || m('(prefers-reduced-motion: reduce)').matches;
+        r.dataset.perf = p === 'lite' || p === 'full' ? p : low ? 'lite' : 'full';
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">

@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { CSSProperties } from 'react'
+import { initAppearance } from '@/lib/appearance'
 import { initGlass } from '@/lib/glass'
 import { initLiquidGlow } from '@/lib/glow'
 import { Toaster, toast } from 'sonner'
@@ -30,6 +31,7 @@ const queryClient = new QueryClient({
   },
 })
 
+initAppearance()
 initGlass()
 initLiquidGlow()
 

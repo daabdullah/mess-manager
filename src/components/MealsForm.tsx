@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import { toast } from 'sonner'
 import { EmptyState, ErrorState, Loading } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Field } from '@/components/ui/field'
 import { Notice } from '@/components/ui/notice'
@@ -159,7 +159,6 @@ export default function MealsForm() {
     <Card>
       <CardHeader>
         <CardTitle>Meals</CardTitle>
-        <CardDescription>How many meals each member had on a day. Use decimals for part of a meal, like 0.5. Empty or 0 means none.</CardDescription>
       </CardHeader>
       <CardContent>
         {members.isError && !members.data && <ErrorState error={members.error} onRetry={() => void members.refetch()} />}

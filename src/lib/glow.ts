@@ -2,6 +2,7 @@
 // It only stores where the pointer is (--mx, --my); the glow itself is drawn by CSS (.surface::before).
 export function initLiquidGlow() {
   const move = (e: PointerEvent) => {
+    if (document.documentElement.dataset.perf === 'lite') return
     const card = (e.target as Element | null)?.closest<HTMLElement>('.surface')
     if (!card) return
     const box = card.getBoundingClientRect()

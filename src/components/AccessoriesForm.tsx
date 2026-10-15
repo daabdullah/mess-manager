@@ -5,7 +5,7 @@ import { Save, Users } from 'lucide-react'
 import { Link } from 'react-router'
 import { EmptyState, ErrorState } from '@/components/States'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Field } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Notice } from '@/components/ui/notice'
@@ -180,7 +180,6 @@ export default function AccessoriesForm({ accessory, onDone }: AccessoriesFormPr
     <Card>
       <CardHeader>
         <CardTitle>Add accessory</CardTitle>
-        <CardDescription>Shared things like cleaning supplies or gas. The cost is divided equally among all members.</CardDescription>
       </CardHeader>
       <CardContent>
         {members.isError && !members.data && <ErrorState error={members.error} onRetry={() => void members.refetch()} />}
