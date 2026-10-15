@@ -50,7 +50,7 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: only light; /* "only" stops phone browsers from forcing their own dark filter in Light mode */
   --background: #f2f2f7;
   --card: #ffffff;
   --card-2: color-mix(in srgb, var(--foreground) 5%, transparent);
