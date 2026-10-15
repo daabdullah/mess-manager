@@ -6,13 +6,14 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <title>Mess Manager</title>
     <script>
       // Set theme and performance mode before the first paint, so nothing flashes.
       try {
-        var r = document.documentElement, s = localStorage, m = window.matchMedia, n = navigator;
+        var r = document.documentElement, s = localStorage, n = navigator, m = function (q) { return window.matchMedia(q); };
         var t = s.getItem('mm-theme'), p = s.getItem('mm-perf');
         r.dataset.theme = t === 'light' || t === 'dark' ? t : m('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         var low = (n.deviceMemory && n.deviceMemory <= 4) || (n.hardwareConcurrency && n.hardwareConcurrency <= 4) || m('(prefers-reduced-motion: reduce)').matches;

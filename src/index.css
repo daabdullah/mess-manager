@@ -122,6 +122,11 @@
     radial-gradient(34% 34% at 16% 86%, rgba(48, 209, 88, 0.22), transparent 70%);
 }
 
+/* Tells phone browsers this page handles dark mode itself, so they do not force their own dark filter over Light mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) { color-scheme: light dark; }
+}
+
 /* The device asks for less transparency or more contrast: glass stays fully tinted (like iOS Reduce Transparency) */
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   :root { --t: 1; }
